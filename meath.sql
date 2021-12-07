@@ -1,0 +1,536 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:4306
+-- Generation Time: Dec 07, 2021 at 01:27 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `meath`
+--
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `order_list` ()  NO SQL
+SELECT o.order_id ,o.customer_id,m.menu_name,p.payment_type,CONCAT(c.phone_no,' ,',c.state,' ,',c.city,' ,',c.landmark,' ,',c.pincode) AS Address,o.quantity as Qnt FROM orders o INNER JOIN menu m ON m.menu_id=o.menu_id INNER JOIN payment p ON p.order_id=o.order_id INNER JOIN customer c ON c.customer_id=o.customer_id WHERE o.order_status='PAYMENT_CONFIRMED' ORDER BY p.time_stamp ASC$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email_id` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone_no` varchar(10) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `landmark` varchar(255) NOT NULL,
+  `pincode` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email_id`, `password`, `phone_no`, `state`, `city`, `landmark`, `pincode`) VALUES
+(10, 'Egor', 'Voronov', 'egorvoronov228@gmail.com', '123123', '9082281488', 'Областная', 'Верхний Старгород', 'Улица Пушкина, Дом Колотушкина', 318008),
+(11, 'Vegan', 'Veganov', 'veganantizozh@gmail.com', '123123', '9085318008', 'nizhegorodskaya', 'nizhnynovgorod', 'kreml, 1', 603005),
+(12, 'Qwerty', 'Qwertov', 'qwerty@gmail.com', '123123', '9080000000', 'qwerty', 'qwerty', 'qwerty, qwerty', 111111);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `menu_id` int(255) NOT NULL,
+  `menu_name` varchar(255) NOT NULL,
+  `price` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`menu_id`, `menu_name`, `price`) VALUES
+(1, 'Крольчатина', 500),
+(2, 'Курятина', 250),
+(3, 'Индюшатина', 400),
+(4, 'Гусятина', 450),
+(5, 'Мясо куропатки', 900),
+(6, 'Мясо фазана', 1000),
+(7, 'Мясо перепела', 600),
+(8, 'Мясо утки', 400),
+(9, 'Свинина', 400),
+(10, 'Говядина', 600),
+(11, 'Баранина', 450),
+(12, 'Крок', 2000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(255) NOT NULL,
+  `customer_id` int(255) NOT NULL,
+  `menu_id` int(255) NOT NULL,
+  `quantity` int(255) NOT NULL DEFAULT 1,
+  `order_status` enum('ADDED_TO_CART','CONFIRMED','PAYMENT_CONFIRMED','DELIVERED') DEFAULT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `menu_id`, `quantity`, `order_status`, `time_stamp`) VALUES
+(212, 10, 3, 37, 'DELIVERED', '2021-12-04 14:30:17'),
+(213, 10, 6, 1, 'DELIVERED', '2021-12-04 14:30:10'),
+(215, 10, 1, 1, 'DELIVERED', '2021-12-06 17:55:41'),
+(218, 10, 2, 1, 'DELIVERED', '2021-12-06 17:55:39'),
+(219, 10, 3, 1, 'DELIVERED', '2021-12-06 17:55:38'),
+(220, 10, 3, 13, 'DELIVERED', '2021-12-05 17:41:22'),
+(221, 10, 1, 1, 'DELIVERED', '2021-12-06 17:55:36'),
+(222, 10, 2, 1, 'DELIVERED', '2021-12-06 17:55:34'),
+(223, 10, 4, 1, 'DELIVERED', '2021-12-06 17:55:32'),
+(224, 10, 5, 1, 'DELIVERED', '2021-12-06 17:55:31'),
+(225, 10, 6, 1, 'DELIVERED', '2021-12-06 17:55:29'),
+(226, 10, 7, 1, 'DELIVERED', '2021-12-06 17:55:27'),
+(227, 10, 8, 1, 'DELIVERED', '2021-12-06 17:55:25'),
+(228, 10, 9, 1, 'DELIVERED', '2021-12-05 19:50:03'),
+(229, 10, 10, 1, 'DELIVERED', '2021-12-06 17:55:22'),
+(230, 10, 11, 1, 'DELIVERED', '2021-12-06 17:55:21'),
+(231, 10, 12, 1, 'DELIVERED', '2021-12-06 17:55:09'),
+(232, 10, 3, 1, 'DELIVERED', '2021-12-06 17:54:56'),
+(233, 10, 3, 1, 'DELIVERED', '2021-12-06 17:54:52'),
+(234, 10, 3, 1, 'DELIVERED', '2021-12-06 17:54:50'),
+(235, 10, 3, 1, 'DELIVERED', '2021-12-06 17:54:48'),
+(243, 10, 1, 1, 'DELIVERED', '2021-12-06 17:54:48'),
+(244, 10, 2, 1, 'DELIVERED', '2021-12-06 17:54:47'),
+(245, 10, 3, 7, 'DELIVERED', '2021-12-05 17:42:16'),
+(246, 10, 4, 1, 'DELIVERED', '2021-12-06 17:54:46'),
+(247, 10, 5, 1, 'DELIVERED', '2021-12-06 17:54:45'),
+(248, 10, 6, 1, 'DELIVERED', '2021-12-06 17:54:44'),
+(249, 10, 7, 1, 'DELIVERED', '2021-12-06 17:54:43'),
+(250, 10, 8, 1, 'DELIVERED', '2021-12-06 17:54:42'),
+(251, 10, 9, 1, 'DELIVERED', '2021-12-06 17:54:42'),
+(252, 10, 10, 1, 'DELIVERED', '2021-12-06 17:54:40'),
+(253, 10, 11, 1, 'DELIVERED', '2021-12-06 17:55:11'),
+(254, 10, 12, 1, 'DELIVERED', '2021-12-06 09:25:26'),
+(255, 10, 3, 1, 'DELIVERED', '2021-12-06 17:55:15'),
+(256, 10, 12, 4, 'DELIVERED', '2021-12-05 17:42:21'),
+(257, 10, 1, 1, 'DELIVERED', '2021-12-06 17:55:16'),
+(258, 10, 12, 1, 'DELIVERED', '2021-12-06 17:54:38'),
+(259, 10, 12, 1, 'DELIVERED', '2021-12-06 17:54:36'),
+(260, 10, 12, 1, 'DELIVERED', '2021-12-06 09:25:05'),
+(261, 10, 12, 1, 'DELIVERED', '2021-12-06 09:24:59'),
+(262, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:01'),
+(263, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:04'),
+(264, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:05'),
+(265, 12, 1, 1, 'CONFIRMED', '2021-12-06 11:22:28'),
+(266, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:08'),
+(267, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:09'),
+(268, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:11'),
+(269, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:13'),
+(270, 11, 1, 1, 'DELIVERED', '2021-12-06 17:56:15'),
+(272, 11, 12, 1, 'DELIVERED', '2021-12-06 17:56:17'),
+(273, 11, 12, 1, 'DELIVERED', '2021-12-06 17:54:27'),
+(274, 11, 12, 1, 'DELIVERED', '2021-12-06 17:54:22'),
+(275, 11, 12, 1, 'DELIVERED', '2021-12-06 17:54:19'),
+(276, 11, 12, 1, 'DELIVERED', '2021-12-06 17:54:16'),
+(277, 11, 12, 1, 'DELIVERED', '2021-12-06 17:54:11'),
+(278, 11, 12, 1, 'DELIVERED', '2021-12-06 17:54:07'),
+(279, 11, 12, 1, 'DELIVERED', '2021-12-06 17:53:54'),
+(280, 10, 12, 5, 'DELIVERED', '2021-12-06 14:55:13'),
+(281, 10, 2, 1, 'DELIVERED', '2021-12-06 17:53:49'),
+(282, 10, 2, 40, 'PAYMENT_CONFIRMED', '2021-12-06 17:58:17'),
+(283, 11, 12, 1, 'DELIVERED', '2021-12-06 19:26:00'),
+(284, 11, 1, 6, 'DELIVERED', '2021-12-06 19:25:42'),
+(286, 10, 6, 1, 'PAYMENT_CONFIRMED', '2021-12-07 09:07:54'),
+(287, 10, 7, 1, 'DELIVERED', '2021-12-07 09:54:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(255) NOT NULL,
+  `order_id` int(255) NOT NULL,
+  `payment_type` enum('CASH_ON_DELIVERY','ONLINE_PAYMENT') NOT NULL DEFAULT 'CASH_ON_DELIVERY',
+  `payment_status` enum('NOT_CONFIRMED','CONFIRMED') NOT NULL DEFAULT 'NOT_CONFIRMED',
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `order_id`, `payment_type`, `payment_status`, `time_stamp`) VALUES
+(390, 212, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-04 14:27:27'),
+(391, 213, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-04 14:27:27'),
+(393, 215, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-04 15:59:24'),
+(394, 218, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-04 15:59:24'),
+(395, 219, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-04 15:59:24'),
+(396, 220, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(397, 221, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(398, 222, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(399, 223, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(400, 224, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(401, 225, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(402, 226, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(403, 227, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(404, 228, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(405, 229, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(406, 230, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(407, 231, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(411, 220, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(412, 221, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(413, 222, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(414, 223, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(415, 224, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(416, 225, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(417, 226, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(418, 227, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(419, 228, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(420, 229, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(421, 230, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(422, 231, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(423, 232, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(426, 220, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(427, 221, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(428, 222, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(429, 223, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(430, 224, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(431, 225, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(432, 226, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(433, 227, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(434, 228, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(435, 229, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(436, 230, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(437, 231, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(438, 232, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(439, 233, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(441, 220, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(442, 221, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(443, 222, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(444, 223, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(445, 224, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(446, 225, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(447, 226, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(448, 227, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(449, 228, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(450, 229, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(451, 230, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(452, 231, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(453, 232, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(454, 233, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(455, 234, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(456, 220, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(457, 221, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(458, 222, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(459, 223, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(460, 224, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(461, 225, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(462, 226, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(463, 227, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(464, 228, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(465, 229, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(466, 230, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(467, 231, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(468, 232, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(469, 233, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(470, 234, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(471, 235, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(487, 220, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(488, 221, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(489, 222, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(490, 223, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(491, 224, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(492, 225, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(493, 226, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(494, 227, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(495, 228, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(496, 229, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(497, 230, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(498, 231, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(499, 232, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(500, 233, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(501, 234, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(502, 235, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(503, 243, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(504, 244, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(505, 245, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(506, 246, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(507, 247, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(508, 248, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(509, 249, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(510, 250, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(511, 251, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(512, 252, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(513, 253, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(514, 254, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-05 14:47:18'),
+(518, 255, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-05 17:31:15'),
+(519, 256, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-05 17:31:15'),
+(520, 257, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 09:00:31'),
+(521, 258, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 09:00:31'),
+(523, 259, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 09:03:04'),
+(524, 260, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 09:05:19'),
+(525, 261, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 09:06:21'),
+(526, 262, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(527, 262, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(528, 263, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(530, 262, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(531, 263, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(532, 264, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(533, 262, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(534, 263, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(535, 264, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(536, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 11:22:28'),
+(540, 262, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(541, 263, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(542, 264, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(543, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 11:33:55'),
+(544, 266, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 11:33:59'),
+(547, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:34:10'),
+(548, 267, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:34:14'),
+(550, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:35:39'),
+(551, 268, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(553, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:36:53'),
+(554, 268, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(555, 269, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(556, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:50:02'),
+(557, 268, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(558, 269, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(559, 270, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(563, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:51:31'),
+(564, 268, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(565, 269, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(566, 270, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(567, 272, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:51:43'),
+(570, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:53:39'),
+(571, 273, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:53:44'),
+(573, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:54:59'),
+(574, 274, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:55:02'),
+(576, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:55:58'),
+(577, 275, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:56:01'),
+(579, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:58:08'),
+(580, 276, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:58:10'),
+(582, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 12:59:20'),
+(583, 277, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 12:59:21'),
+(585, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 13:00:03'),
+(586, 278, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 13:00:07'),
+(588, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 14:09:06'),
+(589, 279, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 14:09:12'),
+(591, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 14:43:40'),
+(592, 280, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 14:43:44'),
+(594, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 17:53:12'),
+(595, 281, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 17:53:14'),
+(597, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 17:58:07'),
+(598, 282, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-06 17:58:17'),
+(600, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-06 19:20:15'),
+(601, 283, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-06 19:22:46'),
+(602, 284, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-06 19:22:46'),
+(603, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-07 09:07:51'),
+(604, 286, 'CASH_ON_DELIVERY', 'CONFIRMED', '2021-12-07 09:07:54'),
+(605, 265, 'CASH_ON_DELIVERY', 'NOT_CONFIRMED', '2021-12-07 09:16:11'),
+(606, 287, 'ONLINE_PAYMENT', 'CONFIRMED', '2021-12-07 09:16:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_details`
+--
+
+CREATE TABLE `payment_details` (
+  `payment_id` int(255) NOT NULL,
+  `customer_id` int(255) NOT NULL,
+  `card_number` varchar(16) NOT NULL,
+  `card_holder_name` varchar(255) NOT NULL,
+  `cvv` int(3) NOT NULL,
+  `exp_month` int(2) NOT NULL,
+  `exp_year` int(4) NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment_details`
+--
+
+INSERT INTO `payment_details` (`payment_id`, `customer_id`, `card_number`, `card_holder_name`, `cvv`, `exp_month`, `exp_year`, `time_stamp`) VALUES
+(15, 10, '0228148813373220', 'Egor Voronov', 228, 12, 24, '2021-12-04 14:27:27'),
+(17, 10, '0228148813373220', 'Egor Voronov', 228, 12, 24, '2021-12-05 14:47:18'),
+(18, 11, '0228148813373220', 'Vegan Veganov', 228, 12, 24, '2021-12-06 19:22:46'),
+(19, 10, '1234123412341234', 'ivan ivanov', 123, 12, 24, '2021-12-07 09:16:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `restaurant`
+--
+
+CREATE TABLE `restaurant` (
+  `restaurant_id` int(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `designation` enum('EMPLOYEE','ADMIN') NOT NULL DEFAULT 'EMPLOYEE'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`restaurant_id`, `password`, `first_name`, `last_name`, `designation`) VALUES
+(1, '123123', 'Valery', 'Neugomonov', 'ADMIN'),
+(2, '123123', 'Nevalery', 'Ugomonov', 'EMPLOYEE'),
+(3, '321321', 'Antivalery', 'Below', 'EMPLOYEE'),
+(4, '432432', 'John', 'Doe', 'EMPLOYEE');
+
+--
+-- Triggers `restaurant`
+--
+DELIMITER $$
+CREATE TRIGGER `res_id` BEFORE INSERT ON `restaurant` FOR EACH ROW BEGIN
+ SET NEW.restaurant_id = (SELECT MAX(restaurant_id) + 4 FROM restaurant);
+ END
+$$
+DELIMITER ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`),
+  ADD UNIQUE KEY `email_id` (`email_id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`menu_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `menu_id` (`menu_id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  ADD PRIMARY KEY (`restaurant_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `menu_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=607;
+
+--
+-- AUTO_INCREMENT for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  MODIFY `payment_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `restaurant`
+--
+ALTER TABLE `restaurant`
+  MODIFY `restaurant_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1010;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`);
+
+--
+-- Constraints for table `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
+
+--
+-- Constraints for table `payment_details`
+--
+ALTER TABLE `payment_details`
+  ADD CONSTRAINT `payment_details_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

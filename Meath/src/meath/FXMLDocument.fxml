@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2033;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meath.FXMLDocumentController">
+   <children>
+      <ImageView fitHeight="540.0" fitWidth="540.0" layoutX="-60.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/fast_food_397248.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="55.0" prefHeight="79.0" prefWidth="400.0" text="мяса" textFill="#ff1e2a">
+         <font>
+            <Font name="Impact" size="64.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="135.0" prefHeight="35.0" prefWidth="400.0" text="Добро пожаловать!" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="455.0" prefHeight="17.0" prefWidth="400.0" text="Регистрировались? Войдите:" textFill="#92939b">
+         <font>
+            <Font name="SansSerif Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="370.0" prefHeight="17.0" prefWidth="400.0" text="Впервые у нас? Зарегистрируйтесь:" textFill="#92939b">
+         <font>
+            <Font name="Liberation Sans Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="200.0" fitWidth="125.0" layoutX="135.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/meath.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="175.0" prefHeight="35.0" prefWidth="400.0" text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="30.0" prefHeight="35.0" prefWidth="400.0" text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="90.0" layoutY="395.0" onAction="#signupScreen" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #FF1E2A; -fx-background-radius: 228;" text="Зарегистрироваться" />
+      <JFXButton buttonType="RAISED" layoutX="90.0" layoutY="480.0" onAction="#loginScreen" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #FF1E2A; -fx-background-radius: 228;" text="Войти" />
+      <JFXButton buttonType="RAISED" layoutX="172.0" layoutY="552.0" onAction="#exitScreen" opacity="0.75" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 228;" text="Закрыть" />
+   </children>
+</AnchorPane>

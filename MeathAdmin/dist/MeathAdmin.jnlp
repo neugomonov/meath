@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="MeathAdmin.jnlp">
+    <information>
+        <title>MeathAdmin</title>
+        <vendor>neugomonov_v</vendor>
+        <description>null</description>
+        <offline-allowed/>
+    </information>
+    <update check="always"/>
+    <resources>
+        <j2se version="9.0.4+" href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="MeathAdmin.jar" size="304787" download="eager"/>
+        <jar href="lib\javafx-swt.jar" size="37110" download="eager"/>
+        <jar href="lib\javafx.base.jar" size="745861" download="eager"/>
+        <jar href="lib\javafx.controls.jar" size="2545280" download="eager"/>
+        <jar href="lib\javafx.fxml.jar" size="129482" download="eager"/>
+        <jar href="lib\javafx.graphics.jar" size="4252454" download="eager"/>
+        <jar href="lib\javafx.media.jar" size="275923" download="eager"/>
+        <jar href="lib\javafx.swing.jar" size="88801" download="eager"/>
+        <jar href="lib\javafx.web.jar" size="720357" download="eager"/>
+        <jar href="lib\jfoenix-9.0.10.jar" size="2432549" download="eager"/>
+        <jar href="lib\junit-4.13.2.jar" size="384581" download="eager"/>
+        <jar href="lib\mysql-connector-java-8.0.27.jar" size="2475087" download="eager"/>
+    </resources>
+    <jfx:javafx-desc width="800" height="600" main-class="meathadmin.MeathAdmin" name="MeathAdmin"/>
+</jnlp>
+

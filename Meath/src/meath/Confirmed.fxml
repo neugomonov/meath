@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #1F2033;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meath.ConfirmedController">
+   <children>
+      <AnchorPane prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #1F2033;">
+         <children>
+            <ImageView fitHeight="96.0" fitWidth="184.0" layoutX="179.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/meat-bg-2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="184.0" layoutX="275.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/meat-bg-2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="184.0" layoutX="81.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/meat-bg-2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="230.0" fitWidth="216.0" layoutX="118.0" layoutY="49.0" opacity="0.25" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/checked.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="40.0" layoutY="136.0" prefHeight="41.0" prefWidth="371.0" text="Спасибо за покупку!" textFill="WHITE">
+               <font>
+                  <Font name="Liberation Sans Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="109.0" layoutY="240.0" onAction="#exitScreen" opacity="0.75" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 228;" text="Спасибо!" />
+      <JFXButton buttonType="RAISED" layoutX="239.0" layoutY="240.0" onAction="#exitScreen" opacity="0.75" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 228;" text="Пожалуйста!" />
+   </children>
+</AnchorPane>

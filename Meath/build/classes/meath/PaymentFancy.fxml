@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meath.PaymentController">
+   <children>
+      <AnchorPane layoutX="44.0" layoutY="110.0" prefHeight="480.0" prefWidth="413.0" style="-fx-background-color: #1F2033; -fx-background-radius: 22;">
+         <children>
+            <AnchorPane layoutX="45.0" layoutY="182.0" prefHeight="201.0" prefWidth="320.0" style="-fx-background-color: black; -fx-background-radius: 22;">
+               <children>
+                  <TextField fx:id="cardnumtxt" disable="true" layoutX="42.0" layoutY="37.0" prefHeight="25.0" prefWidth="190.0" promptText="   XXXX  XXXX XXXX XXXX" />
+                  <TextField fx:id="cardholdertxt" disable="true" layoutX="42.0" layoutY="103.0" promptText="Ivan Ivanov" />
+                  <Label layoutX="49.0" layoutY="17.0" prefHeight="17.0" prefWidth="77.0" text="Номер карты" textFill="WHITE" />
+                  <TextField fx:id="monthtxt" disable="true" layoutX="47.0" layoutY="159.0" prefHeight="25.0" prefWidth="45.0" promptText="ММ" />
+                  <Label layoutX="100.0" layoutY="128.0" prefHeight="36.0" prefWidth="28.0" text="/">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="yeartxt" disable="true" layoutX="117.0" layoutY="159.0" prefHeight="25.0" prefWidth="38.0" promptText="ГГ" />
+                  <Label layoutX="47.0" layoutY="86.0" prefHeight="17.0" prefWidth="107.0" text="Имя на карте" textFill="WHITE" />
+                  <Label layoutX="225.0" layoutY="86.0" prefHeight="17.0" prefWidth="55.0" text="CVV код" textFill="WHITE" />
+                  <PasswordField fx:id="cvvtxt" disable="true" layoutX="226.0" layoutY="103.0" prefHeight="25.0" prefWidth="55.0" promptText="123" />
+                  <Label layoutX="47.0" layoutY="138.0" prefHeight="17.0" prefWidth="107.0" text="Срок действия" textFill="WHITE" />
+                  <ImageView fitHeight="150.0" fitWidth="444.0" layoutX="172.0" layoutY="-69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/debit%20card.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="99.0" fitWidth="232.0" layoutX="82.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cod.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="106.0" fitWidth="107.0" layoutX="-5.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: hard-light;">
+               <image>
+                  <Image url="@../images/cod1.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="132.0" layoutY="407.0" onAction="#confirmPayment" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: white; -fx-background-radius: 228;" text="Подтвердить" />
+            <JFXRadioButton fx:id="onlinepaybtn" layoutX="118.0" layoutY="125.0" onAction="#onlinePayment" prefHeight="17.0" prefWidth="126.0" text="Оплата онлайн" textFill="#92939b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <unSelectedColor>
+                  <Color blue="0.6078431606292725" green="0.5764706134796143" red="0.572549045085907" />
+               </unSelectedColor>
+               <selectedColor>
+                  <Color blue="1.0" green="1.0" red="1.0" />
+               </selectedColor>
+               <toggleGroup>
+                  <ToggleGroup fx:id="payment" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="codbtn" layoutX="118.0" layoutY="93.0" onAction="#cashOnDelivery" prefHeight="17.0" prefWidth="177.0" selected="true" text="Наличные при доставке" textFill="#92939b" toggleGroup="$payment">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <selectedColor>
+                  <Color blue="1.0" green="1.0" red="1.0" />
+               </selectedColor>
+               <unSelectedColor>
+                  <Color blue="0.6078431606292725" green="0.5764706134796143" red="0.572549045085907" />
+               </unSelectedColor>
+            </JFXRadioButton>
+            <Label fx:id="amounttxt" alignment="CENTER_RIGHT" layoutX="16.0" layoutY="17.0" prefHeight="36.0" prefWidth="212.0" text="1234" textFill="WHITE">
+               <font>
+                  <Font name="Liberation Sans Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="234.0" layoutY="16.0" prefHeight="39.0" prefWidth="13.0" text="₽" textFill="WHITE">
+               <font>
+                  <Font name="Liberation Sans Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="warning" layoutX="189.0" layoutY="362.0" prefHeight="17.0" prefWidth="126.0" textFill="RED">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="185.0" layoutY="35.0" prefHeight="41.0" prefWidth="132.0" text="Оплата" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="151.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/credit-card-pay-pal-icons.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="44.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/meat-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="402.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/meat-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="44.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/meat-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="402.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/meat-2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

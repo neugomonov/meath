@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2033;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meathadmin.LoginController">
+   <children>
+      <ImageView fitHeight="244.0" fitWidth="241.0" layoutX="80.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/settings.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="540.0" fitWidth="540.0" layoutX="-60.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/fast_food_397248.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="135.0" prefHeight="35.0" prefWidth="400.0" text="Добро пожаловать!" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="200.0" fitWidth="125.0" layoutX="135.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/meath.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="175.0" prefHeight="35.0" prefWidth="400.0" text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="30.0" prefHeight="35.0" prefWidth="400.0" text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Liberation Sans Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="26.0" prefHeight="79.0" prefWidth="400.0" text="админ" textFill="#ff1e2a">
+         <font>
+            <Font name="Impact" size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutY="55.0" prefHeight="79.0" prefWidth="400.0" style="-fx-effect: dropshadow(two-pass-box, #000000, 20, 0, 0, -5);" text="мяса" textFill="#ff1e2a">
+         <font>
+            <Font name="Impact" size="64.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="46.0" layoutY="274.0" prefHeight="255.0" prefWidth="308.0" style="-fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 22;">
+         <children>
+            <JFXTextField fx:id="emptxt" focusColor="WHITE" labelFloat="true" layoutX="42.0" layoutY="89.0" prefHeight="25.0" prefWidth="232.0" promptText="Идентификатор" style="-fx-text-fill: white; -fx-prompt-text-fill: #cccccc;" unFocusColor="#ff1e2a" />
+            <JFXPasswordField fx:id="passtxt" focusColor="WHITE" labelFloat="true" layoutX="42.0" layoutY="141.0" prefHeight="25.0" prefWidth="232.0" promptText="Пароль" style="-fx-text-fill: white; -fx-prompt-text-fill: #cccccc;" unFocusColor="#ff1e2a" />
+            <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="44.0" layoutY="206.0" onAction="#Login" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #ff1e2a; -fx-background-radius: 228;" text="Войти" />
+            <Label alignment="CENTER" layoutY="32.0" prefHeight="35.0" prefWidth="308.0" text="Вход" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Liberation Sans Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="172.0" layoutY="552.0" onAction="#exitScreen" opacity="0.75" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 228;" text="Закрыть" />
+   </children>
+</AnchorPane>

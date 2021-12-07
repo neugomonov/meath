@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<ScrollPane prefWidth="1002.0" style="-fx-background-color: #1F2033; -fx-background: #1F2033;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="meathadmin.TakeOrderController">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="895.0" prefWidth="1000.0" style="-fx-background-color: #1F2033;">
+         <children>
+            <ImageView fitHeight="254.0" fitWidth="282.0" layoutX="33.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" rotate="-125.5">
+               <image>
+                  <Image url="@../images/meat-bg-2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="626.0" fitWidth="573.0" layoutX="343.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/fast_food_397248.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="294.0" fitWidth="280.0" layoutX="133.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../images/fast_food_397248.png" />
+               </image>
+            </ImageView>
+            <JFXButton buttonType="RAISED" layoutX="420.0" layoutY="772.0" onAction="#DeliverItem" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #f95539; -fx-background-radius: 23;" text="Подтвердить доставку заказа" />
+            <JFXButton buttonType="RAISED" layoutX="501.0" layoutY="832.0" onAction="#Logout" opacity="0.75" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 228;" text="Закрыть" />
+            <JFXTextArea editable="false" focusColor="WHITE" layoutX="49.0" layoutY="743.0" prefHeight="124.0" prefWidth="354.0" promptText="цыуакцуа" style="-fx-text-fill: white; -fx-prompt-text-fill: #cccccc;" text="Подтвердите &#10;успешную доставку &#10;этих заказов&#10;                                                🚚" unFocusColor="WHITE">
+               <font>
+                  <Font name="Liberation Sans Bold" size="24.0" />
+               </font>
+            </JFXTextArea>
+            <TableView fx:id="table" layoutX="14.0" layoutY="14.0" opacity="0.9" prefHeight="730.0" prefWidth="967.0">
+              <columns>
+                <TableColumn fx:id="ordernoCol" minWidth="30.0" prefWidth="60.0" text="№" />
+                <TableColumn fx:id="custCol" prefWidth="90.0" text="Id покупателя" />
+                  <TableColumn fx:id="menuCol" prefWidth="121.0" text="Название" />
+                  <TableColumn fx:id="QuantityCol" prefWidth="50.0" text="Кол-во" />
+                  <TableColumn fx:id="deliveryCol" prefWidth="120.0" text="Вид оплаты" />
+                  <TableColumn fx:id="addressCol" maxWidth="1488.0" prefWidth="510.0" text="Телефон, адрес, почтовый индекс" />
+              </columns>
+              
+            </TableView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="765.0" layoutY="750.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/meat-2.png" />
+               </image>
+            </ImageView>
+            
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
