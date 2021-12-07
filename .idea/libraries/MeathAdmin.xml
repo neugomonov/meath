@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MeathAdmin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/MeathAdmin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

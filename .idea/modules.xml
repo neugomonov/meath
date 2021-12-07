@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Meath/Meath.iml" filepath="$PROJECT_DIR$/Meath/Meath.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MeathAdmin/MeathAdmin.iml" filepath="$PROJECT_DIR$/MeathAdmin/MeathAdmin.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/mysql-connector-java-8.0.27.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.controls.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx-swt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.base.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.swing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/junit-4.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/jfoenix-9.0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.graphics.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.fxml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.web.jar!/" />
+      <root url="jar://$PROJECT_DIR$/MeathAdmin/dist/lib/javafx.media.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
