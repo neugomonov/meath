@@ -8,7 +8,7 @@
     <update check="always"/>
     <resources>
         <j2se version="9.0.4+" href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="MeathAdmin.jar" size="304787" download="eager"/>
+        <jar href="MeathAdmin.jar" size="304792" download="eager"/>
         <jar href="lib\javafx-swt.jar" size="37110" download="eager"/>
         <jar href="lib\javafx.base.jar" size="745861" download="eager"/>
         <jar href="lib\javafx.controls.jar" size="2545280" download="eager"/>

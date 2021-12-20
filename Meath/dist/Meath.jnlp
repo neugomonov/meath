@@ -8,7 +8,7 @@
     <update check="always"/>
     <resources>
         <j2se version="9.0.4+" java-vm-args="--add-modules javafx.controls,javafx.fxml " href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="Meath.jar" size="1370921" download="eager"/>
+        <jar href="Meath.jar" size="1370963" download="eager"/>
         <jar href="lib\javafx-swt.jar" size="37110" download="eager"/>
         <jar href="lib\javafx.base.jar" size="745861" download="eager"/>
         <jar href="lib\javafx.controls.jar" size="2545280" download="eager"/>

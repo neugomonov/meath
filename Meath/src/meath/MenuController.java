@@ -581,7 +581,7 @@ public class MenuController implements Initializable {
 
     public void paymentScreen(ActionEvent event) {
         if (menuModel.isItemInCart()) {
-            type = infoBox("Do you really want Confirm order", null, "Alter!");
+            type = infoBox("Вы уверены, что хотите подтвердить заказ?", null, "Alert!");
             if (type) {
                 menuModel.update_status_to_confirmed();
                 menuModel.copy_to_payment();

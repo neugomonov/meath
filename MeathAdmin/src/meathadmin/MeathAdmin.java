@@ -20,6 +20,9 @@ public class MeathAdmin extends Application {
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();
+        /*
+        dragging the thing https://www.youtube.com/watch?v=gcz3qijlxWg
+        */
     }
 
     /**
